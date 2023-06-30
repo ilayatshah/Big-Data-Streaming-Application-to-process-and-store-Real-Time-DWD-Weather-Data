@@ -16,16 +16,16 @@ spec:
       - name: wind-data-container
         image: dlrimage
         volumeMounts:
-        - name: dlrts1008-cert
-          mountPath: /etc/ssl/certs/dlrts1008.pem
-          subPath: dlrts1008.pem
-        - name: dlrts1008-key
-          mountPath: /etc/ssl/certs/dlrts1008.key
-          subPath: dlrts1008.key
+        - name: dlrts-cert
+          mountPath: /etc/ssl/certs/dlrts.pem
+          subPath: dlrts.pem
+        - name: dlrts-key
+          mountPath: /etc/ssl/certs/dlrts.key
+          subPath: dlrts.key
       volumes:
-      - name: dlrts1008-cert
+      - name: dlrts-cert
         secret:
-          secretName: dlrts1008-cert
-      - name: dlrts1008-key
+          secretName: dlrts-cert
+      - name: dlrts-key
         secret:
-          secretName: dlrts1008-key
+          secretName: dlrts-key

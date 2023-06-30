@@ -20,8 +20,8 @@ import time
 
 # paths (where the certificates are mounted as Kubernetes secrets)
 current_directory = os.path.dirname(os.path.abspath(__file__))
-cert_file = os.path.join(current_directory, 'certs', 'dlrts1008.pem')
-key_file = os.path.join(current_directory, 'certs', 'dlrts1008.key')
+cert_file = os.path.join(current_directory, 'certs', 'dlr.pem')
+key_file = os.path.join(current_directory, 'certs', 'dlr.key')
 
 #### make kafka server and topic configurable ####
 
@@ -270,10 +270,7 @@ if __name__ == '__main__':
     prometheus_thread.start()
     extreme_wind()
 
-# unable to see the metrics without the loop, and adding the loop made the metrics visible.
-# The reason for this is likely due to the way the main thread of our script is terminating 
-# before the HTTP server has a chance to serve the metrics. Therefore, add the loop 
-# to see the matrics
+# loop the whole process
 while True:
     time.sleep(900)  # Or any other duration in seconds
     extreme_wind()

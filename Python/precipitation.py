@@ -19,8 +19,8 @@ import time
 
 # paths (where the certificates are mounted as Kubernetes secrets)
 current_directory = os.path.dirname(os.path.abspath(__file__))
-cert_file = os.path.join(current_directory, 'certs', 'dlrts1008.pem')
-key_file = os.path.join(current_directory, 'certs', 'dlrts1008.key')
+cert_file = os.path.join(current_directory, 'certs', 'dlr.pem')
+key_file = os.path.join(current_directory, 'certs', 'dlr.key')
 
 # These lines read the environment variables KAFKA_BOOTSTRAP_SERVERS and KAFKA_TOPIC, and if they are not set 
 # it uses the default values 'localhost:9092' and 'dwd_extreme_wind_10m', respectively
@@ -264,10 +264,7 @@ if __name__ == '__main__':
     prometheus_thread.start()
     precipitation()
 
-# unable to see the metrics without the loop, and adding the loop made the metrics visible.
-# The reason for this is likely due to the way the main thread of our script is terminating 
-# before the HTTP server has a chance to serve the metrics. Therefore, add the loop 
-# to see the matrics
+# loop the whole process
 while True:
     time.sleep(900)  # Or any other duration in seconds
     precipitation()
