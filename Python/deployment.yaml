@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wind-data-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wind-data-app
+  template:
+    metadata:
+      labels:
+        app: wind-data-app
+    spec:
+      containers:
+      - name: wind-data-container
+        image: dlrimage
+        volumeMounts:
+        - name: dlrts1008-cert
+          mountPath: /etc/ssl/certs/dlrts1008.pem
+          subPath: dlrts1008.pem
+        - name: dlrts1008-key
+          mountPath: /etc/ssl/certs/dlrts1008.key
+          subPath: dlrts1008.key
+      volumes:
+      - name: dlrts1008-cert
+        secret:
+          secretName: dlrts1008-cert
+      - name: dlrts1008-key
+        secret:
+          secretName: dlrts1008-key
